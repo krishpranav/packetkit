@@ -1,0 +1,8 @@
+# vscode cache
+.vscode/
+
+# build folder
+target/
+
+# cache
+.DS_Store
