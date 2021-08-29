@@ -11,6 +11,9 @@ $ cargo build
 ```
 
 ## Usage:
+
+- mv packet /usr/local/bin
+
 ```bash
 # sniff with default filters (dhcp, dns, tls, http)
 $ ./packetkit en0
