@@ -4,7 +4,7 @@ use std::env;
 use std::os::unix::fs::MetadataExt;
 
 use nix::unistd::{Uid, Gid, setuid, setgid};
-
+// TODO: drop the condition after nix added getgroups/setgroups support to osx
 #[cfg(target_os="linux")]
 use nix::unistd::{getgroups, setgroups};
 
@@ -63,6 +63,7 @@ pub fn id() -> String {
     )
 }
 
+// TODO: use the other id function everywhere after nix added getgroups/setgroups support to osx
 #[cfg(not(target_os="linux"))]
 pub fn id() -> String {
     let uid = users::get_current_uid();
@@ -109,6 +110,7 @@ fn apply_config(config: config::Config) -> Result<()> {
             Some((uid, gid)) => {
                 info!("id: {}", id());
                 info!("setting uid to {:?}", uid);
+                // TODO: drop the condition after nix added getgroups/setgroups support to osx
                 #[cfg(target_os="linux")]
                 setgroups(&[])?;
                 setgid(Gid::from_raw(gid))?;

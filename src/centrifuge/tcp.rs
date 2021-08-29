@@ -38,6 +38,7 @@ pub fn extract(_tcp_hdr: &TcpHeader, remaining: &[u8]) -> Result<TCP, Centrifuge
 
 #[inline]
 pub fn unknown(remaining: &[u8]) -> TCP {
+    // if slice contains null bytes, don't try to decode
     if remaining.contains(&0) {
         TCP::Binary(remaining.to_vec())
     } else {

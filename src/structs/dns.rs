@@ -1,6 +1,7 @@
 use serde::Serialize;
 use std::net::{Ipv4Addr, Ipv6Addr};
 
+// https://github.com/tailhook/dns-parser/pull/34
 #[derive(Debug, PartialEq, Serialize)]
 pub enum QueryType {
     A,

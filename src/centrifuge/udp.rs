@@ -45,6 +45,7 @@ pub fn extract(udp_hdr: &UdpHeader, remaining: &[u8]) -> Result<UDP, CentrifugeE
 
 #[inline]
 pub fn unknown(remaining: &[u8]) -> UDP {
+    // if slice contains null bytes, don't try to decode
     if remaining.contains(&0) {
         UDP::Binary(remaining.to_vec())
     } else {
